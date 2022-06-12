@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {bindActionCreators, createStore} from 'redux';
+import {createStore} from 'redux';
 import { type } from '@testing-library/user-event/dist/type';
 
 
@@ -27,6 +27,16 @@ const counter = (state = 0, action) => {
       return state - 1;
   }
 }
+
+let store =  createStore(counter);
+
+store.subscribe(() => console.log(store.getState()));
+
+store.dispatch(increment());
+store.dispatch(increment());
+store.dispatch(decrement());
+store.dispatch(decrement());
+store.dispatch(decrement());
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
